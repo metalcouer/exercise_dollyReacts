@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import data from './data'
 import Card from './components/card'
 
 class App extends Component {
@@ -8,20 +7,25 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
+      songs: [],
       wisdom: ''
     }
   }
 
-  generateQuote = () => {
-
+  generateQuote = (event) => {
+    event.preventDefault()
+    console.log(this.state.songs)
   }
 
   componentDidMount() {
-    // set data to state 
+    fetch('http://localhost:3003/data')
+      .then(data => data.json())
+        .then(JSONdata => {
+          this.setState({songs: JSONdata.data.songs})
+        })
   }
 
   render() {
-    console.log("all the data", data)
     return (
       <div className="container-fluid">
         <div className="row navbar justify-content-end pb-5">
@@ -42,7 +46,7 @@ class App extends Component {
           </div>
         </div> 
         <div className="row justify-content-center">
-          {this.generateQuote()}
+      
         {/* {this.state.wisdom ? <h1>{this.state.wisdom}</h1> : <Card></Card>} */}
         </div>
       </div>
