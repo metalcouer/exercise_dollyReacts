@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import data from './data'
+import Card from './components/card'
 
 class App extends Component {
 
@@ -13,6 +14,10 @@ class App extends Component {
 
   generateQuote = () => {
 
+  }
+
+  componentDidMount() {
+    // set data to state 
   }
 
   render() {
@@ -36,8 +41,9 @@ class App extends Component {
             <button className="btn btn-danger btn-lg" onClick={this.generateQuote}>Press Me</button>
           </div>
         </div> 
-        <div className="row">
-        {this.state.wisdom ? <h1>{this.state.wisdom}</h1> : ''}
+        <div className="row justify-content-center">
+          {this.generateQuote()}
+        {/* {this.state.wisdom ? <h1>{this.state.wisdom}</h1> : <Card></Card>} */}
         </div>
       </div>
     );
